@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>우리 아이 성장일기</title>
+    <style>
+        body {
+            background: #000000;
+            color: #ffffff;
+            font-family: 'Courier New', 'Lucida Console', monospace;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            min-height: 100vh;
+            font-size: 14px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #000000;
+            border: 1px solid #00ff00;
+            border-radius: 0;
+        }
+        
+        .title {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #00ff00;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .subtitle {
+            text-align: center;
+            font-size: 1em;
+            margin-bottom: 40px;
+            color: #888888;
+            font-style: normal;
+        }
+        
+        .date-header {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #00ff00;
+            margin: 30px 0 15px 0;
+            border-bottom: 1px solid #333333;
+            padding-bottom: 5px;
+        }
+        
+        .diary-entry {
+            margin-bottom: 30px;
+            font-size: 1em;
+            text-indent: 0;
+            animation: fadeIn 0.8s ease-in;
+            word-break: keep-all;
+            color: #ffffff;
+        }
+        
+        .choices {
+            margin: 30px 0;
+        }
+        
+        .choice {
+            display: block;
+            margin: 10px 0;
+            padding: 10px 15px;
+            background: #111111;
+            border: 1px solid #00ff00;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1em;
+            width: 100%;
+            text-align: left;
+            word-break: keep-all;
+        }
+        
+        .choice:hover {
+            background: #003300;
+            border-color: #00ff66;
+            color: #00ff00;
+        }
+        
+        .choice:before {
+            content: "> ";
+            color: #00ff00;
+        }
+        
+        .status {
+            margin-top: 30px;
+            padding: 15px;
+            background: #111111;
+            border: 1px solid #333333;
+            border-radius: 0;
+            font-size: 0.9em;
+            color: #ffffff;
+        }
+        
+        .concern-level {
+            font-weight: bold;
+        }
+        
+        .normal { color: #00ff00; }
+        .slight { color: #ffff00; }
+        .moderate { color: #ff8800; }
+        .high { color: #ff4400; }
+        .extreme { color: #ff0000; }
+        
+        .glitch {
+            animation: textGlitch 0.8s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes textGlitch {
+            0% { transform: translateX(0); }
+            10% { transform: translateX(-1px); }
+            20% { transform: translateX(1px); }
+            30% { transform: translateX(-1px); }
+            40% { transform: translateX(1px); }
+            50% { transform: translateX(0); }
+            100% { transform: translateX(0); }
+        }
+        
+        .highlight {
+            background: #003300;
+            padding: 1px 3px;
+            border-radius: 0;
+            font-weight: bold;
+            color: #00ff00;
+        }
+        
+        .disturbing {
+            color: #ff0000;
+            font-weight: bold;
+        }
+        
+        .photo-description {
+            font-style: italic;
+            color: #666666;
+            font-size: 0.9em;
+            margin: 10px 0;
+            text-align: center;
+        }
+        
+        .photo-description:before {
+            content: "[";
+            color: #00ff00;
+        }
+        
+        .photo-description:after {
+            content: "]";
+            color: #00ff00;
+        }
+        
+        /* 터미널 커서 효과 */
+        .title:after {
+            content: "_";
+            animation: blink 1s infinite;
+            color: #00ff00;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">우리 아이 성장일기</h1>
+        <p class="subtitle">사랑하는 지민이와 함께하는 소중한 시간들 💕</p>
+        
+        <div id="story-content">
+            <div class="date-header">2023년 3월 15일 (생후 1개월)</div>
+            <div class="diary-entry">
+                오늘 지민이가 태어난 지 정확히 한 달이 되었다! 🎉 
+                <br><br>
+                신생아실에서 처음 지민이를 봤을 때의 감동을 아직도 잊을 수 없다. 작고 소중한 우리 아기가 세상에 온 게 아직도 믿어지지 않는다.
+                <br><br>
+                지민이는 정말 순한 아기다. 밤에도 거의 울지 않고, 먹을 시간만 되면 살며시 눈을 뜬다. 다른 엄마들이 신생아 때는 정말 힘들다고 했는데, 우리 지민이는 정말 착한 아기인 것 같다.
+                <br><br>
+                오늘 소아과에 갔더니 선생님이 <span class="highlight">몸무게와 키가 평균보다 조금 크다</span>고 하셨다. 우리 지민이가 건강하게 자라고 있다는 증거니까 기쁘다!
+                <br><br>
+                <div class="photo-description">[사진: 지민이가 요람에서 평화롭게 자고 있는 모습]</div>
+            </div>
+            
+            <div class="choices">
+                <button class="choice" onclick="goToStory('next_month')">다음 달 일기를 본다</button>
+                <button class="choice" onclick="goToStory('details')">이 시기를 더 자세히 기록한다</button>
+                <button class="choice" onclick="goToStory('photos')">사진첩을 본다</button>
+            </div>
+        </div>
+        
+        <div class="status">
+            <strong>아이 나이:</strong> <span id="age-display">생후 1개월</span><br>
+            <strong>발달 상태:</strong> <span class="concern-level normal" id="development">정상</span><br>
+            <strong>부모 걱정도:</strong> <span class="concern-level normal" id="concern">없음</span><br>
+            <strong>특이사항:</strong> <span id="special">평균보다 큰 체격</span>
+        </div>
+    </div>
+
+    <script>
+        // 게임 상태 
+        let currentStory = 'beginning';
+        let age = 1;
+        let concernLevel = 0;
+        
+        // 스토리 데이터
+        const stories = {
+            next_month: {
+                title: "2023년 4월 20일 (생후 2개월)",
+                content: `지민이가 벌써 2개월이 되었다! 시간이 정말 빨리 간다.
+                
+                요즘 지민이는 목을 조금씩 가누기 시작했다. 아직은 불안정하지만 그래도 우리를 쳐다보려고 애쓰는 모습이 너무 사랑스럽다.
+                
+                그런데 신기한 건, <span class="highlight">지민이가 항상 같은 곳을 바라본다는 것</span>이다. 침실 구석, 정확히 옷장 위쪽을 자주 응시한다. 처음에는 뭔가 흥미로운 게 있나 싶어서 나도 봤는데 아무것도 없었다.
+                
+                아마 아기들은 대조가 뚜렷한 곳을 좋아한다고 하니까 벽과 천장의 경계선이 눈에 띄나 보다.
+                
+                그리고 <span class="highlight">지민이가 웃기 시작했다!</span> 정말 천사 같은 미소다. 하지만 가끔... 아무도 없는 곳을 보고 웃을 때가 있다. 
+                
+                <div class="photo-description">[사진: 지민이가 혼자 웃고 있는 모습. 시선은 카메라 밖 어딘가를 향하고 있다]</div>`,
+                choices: [
+                    {text: "지민이가 보는 곳을 자세히 관찰한다", action: "observe_corner"},
+                    {text: "소아과에 상담받는다", action: "consult_doctor"},
+                    {text: "평범한 발달 과정이라고 생각한다", action: "dismiss_normal"}
+                ],
+                age: 2,
+                concern: 1
+            },
+            
+            details: {
+                title: "2023년 3월 15일 (생후 1개월) - 상세 기록",
+                content: `오늘 하루를 더 자세히 기록해보려고 한다.
+                
+                아침 6시: 지민이가 깨어났다. 울지 않고 그냥 눈만 뜬 채로 천장을 바라보고 있었다. 신생아치고는 정말 조용하다.
+                
+                오전 10시: 첫 수유. 지민이는 정말 잘 먹는다. 하지만 먹으면서도 계속 <span class="highlight">내 어깨 너머 뭔가를 바라본다.</span> 뭘 그렇게 신기하게 보는 걸까?
+                
+                오후 2시: 기저귀 갈아주는데, 지민이가 갑자기 웃었다. 하지만 나를 보고 웃은 게 아니라 <span class="highlight">내 뒤쪽을 보고 웃었다.</span> 뒤를 돌아봤지만 아무것도 없었다.
+                
+                저녁 8시: 잠들기 전에 지민이를 안고 있는데, 계속 같은 방향을 바라본다. 옷장 위쪽 구석 말이다.
+                
+                이상하게도... <span class="highlight">그 구석을 바라볼 때마다 지민이가 더 차분해진다.</span>`,
+                choices: [
+                    {text: "다음 날 관찰을 계속한다", action: "next_day"},
+                    {text: "그 구석을 자세히 살펴본다", action: "examine_corner"},
+                    {text: "남편과 상의한다", action: "talk_husband"}
+                ],
+                age: 1,
+                concern: 1
+            },
+            
+            photos: {
+                title: "2023년 3월 15일 - 사진첩",
+                content: `오늘 찍은 사진들을 정리하면서 이상한 점을 발견했다.
+                
+                지민이 사진이 총 15장인데, <span class="highlight">모든 사진에서 지민이가 같은 방향을 바라보고 있다.</span> 내가 어디서 찍든 상관없이 항상 그 구석 쪽을 본다.
+                
+                더 신기한 건, 사진으로 보니까 지민이 표정이 정말 편안해 보인다는 것이다. 마치 <span class="highlight">친숙한 누군가를 보고 있는 것 같은 표정</span>이다.
+                
+                혹시나 싶어서 그 구석도 함께 찍어봤는데... 사진에는 당연히 아무것도 나오지 않았다.
+                
+                하지만 사진을 자세히 보니까, <span class="highlight">그 구석 부분이 다른 곳보다 살짝 흐리게 나온 것 같다.</span> 렌즈에 먼지가 묻었나? 아니면 조명 문제일까?
+                
+                <div class="photo-description">[15장의 사진이 앨범에 정리되어 있다. 모든 사진에서 지민이의 시선 방향이 일치한다]</div>`,
+                choices: [
+                    {text: "다른 카메라로 다시 찍어본다", action: "try_camera"},
+                    {text: "사진을 확대해서 분석한다", action: "analyze_photo"},
+                    {text: "그냥 우연의 일치라고 생각한다", action: "dismiss_coincidence"}
+                ],
+                age: 1,
+                concern: 2
+            },
+            
+            seek_expert: {
+                title: "2023년 4월 28일 - 전문가 상담",
+                content: `아동 발달 전문가에게 상담을 받기로 했다.
+                
+                "아기가 특정 장소만 계속 바라보고, 위치를 바꾸면 심하게 울어요."
+                
+                "흥미롭네요. 아기들은 때로 우리가 감지하지 못하는 자극에 반응하기도 합니다."
+                
+                전문가는 여러 가지 검사를 했지만 지민이는 완전히 정상이었다. 오히려 <span class="highlight">또래보다 발달이 빠르다고 했다.</span>
+                
+                "혹시 집에 특별한 환경적 요인이 있을까요? 전자기파나 온도 변화 같은..."
+                
+                그 말을 듣고 소름이 돋았다. 정말로 온도 변화가 있었으니까.
+                
+                <span class="disturbing">"전문가도 뭔가 이상하다고 생각하는 걸까?"</span>`,
+                choices: [
+                    {text: "집 환경을 정밀 조사받는다", action: "home_investigation"},
+                    {text: "지민이를 더 자세히 관찰한다", action: "detailed_observation"},
+                    {text: "다른 곳에서 며칠 지내본다", action: "temporary_relocation"}
+                ],
+                age: 2,
+                concern: 4
+            },
+            
+            let_jimin_be: {
+                title: "2023년 5월 1일 - 지민이 뜻대로",
+                content: `지민이가 원하는 대로 두기로 했다. 
+                
+                그 구석을 바라보고 싶어하면 바라보게 하고, 그곳에서 무언가를 느끼고 있다면 그대로 두자.
+                
+                하지만... 결과는 예상치 못한 방향으로 흘러갔다.
+                
+                지민이는 점점 더 <span class="highlight">그 구석에 집중하기 시작했다.</span> 하루 종일 그곳만 바라본다. 먹을 때도, 기저귀를 갈 때도 고개를 돌려서 그곳을 본다.
+                
+                그리고... <span class="disturbing">지민이가 웃기 시작했다. 그 구석을 보면서 계속 웃는다.</span>
+                
+                오늘은 더 충격적인 일이 일어났다. 지민이가... <span class="highlight">말을 했다.</span>
+                
+                "고마워." 
+                
+                생후 3개월 아기가, 그 구석을 보면서, 명확하게 말했다.`,
+                choices: [
+                    {text: "지민이와 대화를 시도한다", action: "attempt_conversation"},
+                    {text: "그 구석의 정체를 밝히려 한다", action: "reveal_corner_truth"},
+                    {text: "즉시 그 방을 떠난다", action: "leave_room_immediately"}
+                ],
+                age: 3,
+                concern: 7
+            },
+            
+            research_relationship: {
+                title: "2023년 4월 30일 - 관계 연구",
+                content: `지민이와 그 구석의 관계를 체계적으로 연구해보기로 했다.
+                
+                일주일간의 관찰 결과:
+                
+                - 지민이가 그 구석을 볼 때: 온도 2-3도 하락, 완전한 정적, 미소
+                - 구석을 보지 못할 때: 계속 울음, 불안한 행동, 체온 상승
+                
+                더 놀라운 발견은... <span class="highlight">지민이의 발달 속도가 비정상적으로 빠르다는 것</span>이다.
+                
+                생후 2개월인데 목을 완전히 가누고, 뒤집으려 하고, 심지어 앉으려고 시도한다.
+                
+                <span class="disturbing">마치 그 구석에서 무언가를 배우고 있는 것 같다.</span>
+                
+                그리고 오늘... 지민이가 그 구석을 보면서 손짓을 했다. 마치 누군가를 부르는 것처럼.`,
+                choices: [
+                    {text: "지민이가 무엇을 배우는지 알아본다", action: "discover_learning"},
+                    {text: "발달 속도를 의학적으로 검사받는다", action: "medical_examination"},
+                    {text: "그 구석과 소통을 시도한다", action: "communicate_corner"}
+                ],
+                age: 2,
+                concern: 6
+            },
+            
+            try_camera: {
+                title: "2023년 3월 16일 - 다른 카메라 실험",
+                content: `다른 카메라로 그 구석을 촬영해봤다. 휴대폰 카메라, 디지털카메라, 심지어 오래된 필름카메라까지.
+                
+                결과는 모두 같았다. <span class="highlight">아무것도 보이지 않는다.</span>
+                
+                하지만... 한 가지 이상한 점을 발견했다.
+                
+                <span class="disturbing">필름카메라로 찍은 사진에서만 그 구석 부분이 완전히 검게 나왔다.</span> 마치 빛이 전혀 들어가지 않은 것처럼.
+                
+                디지털 사진에서는 평범하게 나오는데, 필름에서만 그렇다.
+                
+                이게 무슨 의미일까?`,
+                choices: [
+                    {text: "필름 사진을 전문가에게 분석받는다", action: "analyze_film"},
+                    {text: "더 많은 필름 사진을 찍어본다", action: "more_film_photos"},
+                    {text: "디지털과 필름의 차이점을 연구한다", action: "digital_vs_film"}
+                ],
+                age: 1,
+                concern: 3
+            },
+            
+            analyze_photo: {
+                title: "2023년 3월 17일 - 사진 분석",
+                content: `사진을 컴퓨터로 확대하고 분석해봤다.
+                
+                놀랍게도... <span class="highlight">뭔가가 있다.</span>
+                
+                확대하고 밝기를 조정하니까, 그 구석에 희미한 형태가 보인다. <span class="disturbing">사람의 형태 같은 것이.</span>
+                
+                처음에는 빛의 반사나 그림자인 줄 알았는데, 여러 장의 사진에서 같은 형태가 나타난다.
+                
+                그리고... 그 형태는 조금씩 변하고 있다. 마치 움직이고 있는 것처럼.
+                
+                더 충격적인 건, <span class="highlight">그 형태가 지민이를 향해 손을 뻗고 있는 것 같다는 것</span>이다.`,
+                choices: [
+                    {text: "사진 분석 전문가에게 의뢰한다", action: "photo_expert"},
+                    {text: "더 고해상도 카메라를 구한다", action: "high_res_camera"},
+                    {text: "그 형태와 접촉을 시도한다", action: "contact_entity"}
+                ],
+                age: 1,
+                concern: 5
+            },
+            
+            dismiss_coincidence: {
+                title: "2023년 3월 18일 - 우연의 일치",
+                content: `그냥 우연의 일치라고 생각하기로 했다. 아기들은 원래 예측 불가능하니까.
+                
+                하지만... 며칠 지나도 패턴은 변하지 않았다.
+                
+                지민이는 여전히 그 구석만 바라본다. 15장이 아니라 50장, 100장을 찍어도 마찬가지다.
+                
+                <span class="highlight">그리고 이상한 일이 더 생기기 시작했다.</span>
+                
+                지민이가 그 구석을 볼 때마다 집 안의 전자기기들이 이상하게 작동한다. TV가 잠깐 꺼졌다 켜지거나, 라디오에서 잡음이 나거나.
+                
+                <span class="disturbing">어젯밤에는 지민이가 그 구석을 보면서 웃는데, 라디오에서 아주 희미한 웃음소리가 들렸다.</span>
+                
+                정말 우연일까?`,
+                choices: [
+                    {text: "전자기기 이상 현상을 조사한다", action: "investigate_electronics"},
+                    {text: "전문가에게 상담받는다", action: "consult_expert"},
+                    {text: "계속 무시하려고 노력한다", action: "keep_ignoring"}
+                ],
+                age: 1,
+                concern: 4
+            },
+            
+            record_video: {
+                title: "2023년 5월 3일 (생후 2개월 2주)",
+                content: `일주일 동안 지민이를 비디오로 촬영했다.
+                
+                영상을 다시 보니까... <span class="disturbing">소름이 끼쳤다.</span>
+                
+                지민이가 그 구석을 바라볼 때, 정말로 마치 누군가와 교감하고 있는 것 같다. 옹알이의 패턴이 일정하다. 마치 상대방의 대답을 기다리는 것처럼 중간중간 멈춘다.
+                
+                그리고... <span class="highlight">영상 속에서 지민이 목소리 외에 다른 소리가 들린다.</span> 아주 희미하지만, 마치 누군가가 속삭이는 것 같은...
+                
+                남편은 그냥 집 밖 소음이라고 하는데, 나는 확신한다. <span class="disturbing">그 소리는 집 안에서 나오고 있다.</span>
+                
+                더 무서운 건, 지민이가 그 "대화"를 나눈 후에는 항상 <span class="highlight">발달이 눈에 띄게 빨라진다는 것</span>이다. 어제는 갑자기 뒤집기를 시도했다. 생후 2개월에 뒤집기라니!
+                
+                <div class="photo-description">[비디오 스크린샷: 지민이가 구석을 바라보며 손을 뻗고 있는 모습]</div>`,
+                choices: [
+                    {text: "소리를 분석해본다", action: "analyze_sound"},
+                    {text: "지민이를 다른 방으로 옮긴다", action: "move_room"},
+                    {text: "전문가에게 상담받는다", action: "expert_consultation"}
+                ],
+                age: 3,
+                concern: 6
+            },
+            
+            more_questions: {
+                title: "2023년 5월 21일 - 더 많은 질문",
+                content: `지민이에게 더 많은 것을 물어보기로 했다.
+                
+                "지민아, 선생님은 어떻게 생겼어?"
+                
+                "음... 엄마랑 비슷해요. 하지만 눈이 좀 달라요."
+                
+                "어떻게 다른데?"
+                
+                <span class="disturbing">"검어요. 완전히 검어요."</span>
+                
+                소름이 돋았다. "선생님이 뭐라고 말씀하셔?"
+                
+                "저를 더 빨리 자라게 해주신대요. 그래야 <span class="highlight">함께 갈 수 있다고</span> 하셨어요."
+                
+                "어디로 가는 건데?"
+                
+                지민이가 잠시 망설이더니 말했다. "모르겠어요. 하지만... <span class="disturbing">엄마는 못 간대요.</span>"
+                
+                "왜?"
+                
+                "엄마는... 필요 없다고 하셨어요."
+                
+                그 순간 방 온도가 급격히 떨어졌다. 그 존재가 우리 대화를 듣고 있다.`,
+                choices: [
+                    {text: "그 '선생님'의 목적을 알아본다", action: "investigate_purpose"}
+                ],
+                age: 4,
+                concern: 10
+            },
+            
+            run_away: {
+                title: "2023년 5월 22일 - 도피 시도",
+                content: `더 이상 참을 수 없었다. 지민이를 데리고 즉시 이 집을 떠나기로 했다.
+                
+                급하게 짐을 챙기고 지민이를 안았다. "지민아, 우리 여행 가자."
+                
+                하지만 문을 열려는 순간... <span class="disturbing">문이 열리지 않았다.</span>
+                
+                손잡이를 아무리 돌려도 꼼짝하지 않는다. 창문도 마찬가지였다.
+                
+                <span class="highlight">"엄마, 왜 나가려고 해요?"</span> 지민이가 물었다.
+                
+                "지민이를 안전한 곳으로 데려가려고..."
+                
+                "하지만 저는 여기가 좋아요. <span class="disturbing">선생님이 계시잖아요.</span>"
+                
+                그때 그 구석에서 웃음소리가 들렸다. 차가운 여성의 웃음.
+                
+                "나가려고 해도 소용없어요." 그 목소리가 말했다. "지민이는 이미 우리 것이니까요."
+                
+                문이 천천히 열렸다. 하지만 밖은... <span class="disturbing">완전한 어둠이었다.</span>
+                
+                도망칠 곳은 없었다.`,
+                choices: [
+                    {text: "지민이의 학습을 중단시키려 한다", action: "stop_learning"}
+                ],
+                age: 4,
+                concern: 10
+            },
+            
+            meet_teacher: {
+                title: "2023년 5월 25일 - 선생님과의 만남",
+                content: `"그 선생님을 직접 만나고 싶어요." 내가 그 구석을 향해 말했다.
+                
+                방이 갑자기 차가워졌다. 지민이는 나를 걱정스러운 표정으로 바라봤다.
+                
+                "엄마, 안 돼요. 선생님은 엄마를 좋아하지 않아요."
+                
+                "왜?"
+                
+                "엄마는... 방해가 되니까요."
+                
+                그때, 그 구석에서 목소리가 들렸다. 이번에는 증폭기 없이도 명확하게.
+                
+                <span class="disturbing">"지민이 엄마. 우리가 이야기할 시간이 온 것 같네요."</span>
+                
+                구석이 어두워지기 시작했다. 아니, 어두워지는 게 아니라... 뭔가가 나타나고 있었다.
+                
+                <span class="highlight">여자의 형태</span>였다. 하지만 완전하지 않았다. 마치 연기로 만들어진 것처럼 흐릿했다.
+                
+                "저는 지민이의 진짜 어머니입니다." 그 존재가 말했다.
+                
+                "당신은... 단지 <span class="disturbing">임시 보호자</span>일 뿐이에요."
+                
+                지민이가 내 손을 잡았다. 하지만 그 손길이... 이상했다. 너무 강했다. 생후 4개월 아기의 힘이 아니었다.`,
+                choices: [
+                    {text: "그 존재의 정체를 밝혀낸다", action: "uncover_true_identity"},
+                    {text: "지민이에게 진실을 말한다", action: "tell_jimin_truth"}
+                ],
+                age: 4,
+                concern: 10
+            },
+            
+            analyze_sound: {
+                title: "2023년 5월 10일 (생후 3개월)",
+                content: `컴퓨터로 음성 파일을 분석해봤다.
+                
+                결과가... 믿기 어렵다.
+                
+                <span class="disturbing">정말로 다른 목소리가 있다.</span> 지민이 목소리와 완전히 다른, 성인 여성의 목소리다. 주파수 분석 결과 확실히 별개의 음성이다.
+                
+                더 충격적인 건, 그 목소리를 더 크게 증폭시켜서 들어보니까... <span class="highlight">말을 하고 있다는 것</span>이다.
+                
+                "좋아, 지민아... 그래, 잘하고 있어... 곧 더 커질 거야..."
+                
+                이런 식으로 지민이를 격려하고 있다. 마치... 마치 <span class="disturbing">지민이를 가르치고 있는 것 같다.</span>
+                
+                나는 지금 미쳐가고 있는 걸까? 아니면 정말로...
+                
+                지민이는 이제 생후 3개월인데 벌써 <span class="highlight">목을 완전히 가누고, 혼자서 앉으려고 시도한다.</span> 이건 분명히 비정상적으로 빠른 발달이다.
+                
+                <div class="photo-description">[음성 분석 화면: 두 개의 서로 다른 음성 파형이 보인다]</div>`,
+                choices: [
+                    {text: "그 목소리의 정체를 알아본다", action: "investigate_voice"},
+                    {text: "즉시 이사를 준비한다", action: "prepare_move"},
+                    {text: "지민이와 함께 병원에 간다", action: "hospital_visit"}
+                ],
+                age: 3,
+                concern: 8
+            },
+            
+            investigate_voice: {
+                title: "2023년 5월 15일 (생후 3개월 1주)",
+                content: `그 목소리에 대해 더 알아보기로 했다.
+                
+                여러 날 밤에 녹음을 계속했더니, 점점 더 명확해졌다. 그 여성은... <span class="disturbing">지민이에게 뭔가를 가르치고 있다.</span>
+                
+                "이제 팔을 이렇게 움직여봐..."
+                "더 빨리 자랄 수 있어..."
+                "곧 걸을 수 있을 거야..."
+                
+                그리고 정말로 지민이는 그 말에 따라 발달하고 있다. <span class="highlight">이제 혼자 앉을 수 있고, 심지어 기어다니려고 한다.</span> 생후 3개월에!
+                
+                더 무서운 건, 오늘 밤에 들은 대화다.
+                
+                "지민아, 이제 말할 시간이야..."
+                
+                그리고 지민이가 대답했다. 명확하게.
+                
+                <span class="disturbing">"네, 선생님."</span>
+                
+                생후 3개월 아기가 말을 한다. 그것도 완전한 문장으로.
+                
+                나는 이 모든 걸 혼자 목격하고 있다. 남편이 있을 때는 절대 일어나지 않는다.
+                
+                <div class="photo-description">[지민이가 혼자 앉아있는 사진. 눈은 여전히 그 구석을 바라보고 있다]</div>`,
+                choices: [
+                    {text: "남편에게 증거를 보여준다", action: "show_evidence"},
+                    {text: "지민이에게 직접 말을 걸어본다", action: "talk_to_jimin"},
+                    {text: "그 '선생님'에게 말을 걸어본다", action: "talk_to_teacher"}
+                ],
+                age: 3,
+                concern: 9
+            },
+            
+            document_process: {
+                title: "2023년 5월 10일 - 학습 과정 기록",
+                content: `지민이의 학습 과정을 체계적으로 기록하기 시작했다.
+                
+                **Day 1**: 지민이가 그 구석을 바라보며 15분간 집중. 직후 새로운 옹알이 패턴 발견.
+                
+                **Day 3**: 목 가누기 완료. 평균보다 1개월 빨른 발달.
+                
+                **Day 7**: 뒤집기 시도. 혼자 앉으려는 움직임 관찰.
+                
+                **Day 10**: <span class="highlight">숫자 세기 시작. "하나, 둘, 셋"을 명확히 발음.</span>
+                
+                **Day 14**: 완전한 문장으로 대화. "엄마, 배고파요."
+                
+                **Day 18**: <span class="disturbing">걷기 시도. 생후 3개월에 일어서려 함.</span>
+                
+                이 기록을 보니 패턴이 명확하다. <span class="highlight">지민이는 보통 아기가 2년에 걸쳐 배우는 것들을 몇 주 만에 습득하고 있다.</span>
+                
+                하지만... 이런 급격한 발달이 지민이에게 어떤 영향을 미칠까?
+                
+                오늘 지민이가 말했다. "엄마, 저 너무 빨리 자라는 것 같아요. 조금 무서워요."`,
+                choices: [
+                    {text: "지민이의 두려움을 달래준다", action: "comfort_jimin"},
+                    {text: "발달 속도를 늦출 방법을 찾는다", action: "slow_development"},
+                    {text: "전문가들에게 기록을 공개한다", action: "share_records"}
+                ],
+                age: 3,
+                concern: 7
+            },
+            
+            stop_learning: {
+                title: "2023년 5월 12일 - 학습 중단 시도",
+                content: `지민이의 비정상적인 학습을 중단시키기로 결심했다.
+                
+                먼저 그 구석을 가리는 큰 천을 설치했다. 지민이가 그곳을 볼 수 없도록.
+                
+                결과는... <span class="disturbing">참혹했다.</span>
+                
+                지민이가 울기 시작했다. 그냥 우는 게 아니라, <span class="highlight">마치 고통스러워하는 것처럼 비명을 질렀다.</span>
+                
+                "아파요! 엄마, 아파요! 선생님이 안 보여요!"
+                
+                30분 후, 지민이의 체온이 40도까지 올랐다. 병원에 가려고 했지만...
+                
+                천을 치우는 순간, 지민이가 즉시 진정됐다. 체온도 정상으로 돌아왔다.
+                
+                <span class="disturbing">"엄마... 저를 선생님에게서 떼어놓으면 안 돼요. 저는 선생님 없이는 살 수 없어요."</span>
+                
+                지민이가... 그 존재에게 의존하고 있다. 마치 중독된 것처럼.
+                
+                이제 어떻게 해야 할까?`,
+                choices: [
+                    {text: "점진적으로 의존성을 줄여본다", action: "gradual_reduction"},
+                    {text: "그 존재와 직접 협상한다", action: "negotiate_directly"},
+                    {text: "전문가의 도움을 구한다", action: "seek_professional_help"}
+                ],
+                age: 3,
+                concern: 9
+            },
+            
+            investigate_purpose: {
+                title: "2023년 5월 15일 - 선생님의 목적",
+                content: `그 '선생님'의 진짜 목적이 무엇인지 알아보기로 했다.
+                
+                며칠간 조심스럽게 관찰한 결과, 충격적인 사실을 발견했다.
+                
+                <span class="highlight">그 존재는 단순히 지민이를 가르치는 게 아니었다.</span>
+                
+                지민이의 급속한 발달을 보면서 깨달았다. 이건 교육이 아니라... <span class="disturbing">무언가를 준비하는 과정이다.</span>
+                
+                오늘 밤, 지민이와 그 존재의 대화를 들었다.
+                
+                "선생님, 언제쯤 준비가 끝나나요?"
+                
+                "곧이야, 지민아. 네가 충분히 자라면... 우리는 함께 갈 수 있어."
+                
+                "엄마는 어떻게 하죠?"
+                
+                <span class="disturbing">"엄마는... 더 이상 필요하지 않을 거야."</span>
+                
+                그 순간 모든 것이 명확해졌다. 
+                
+                그 존재는 지민이를 빠르게 성장시켜서... <span class="highlight">어딘가로 데려가려 하고 있다.</span>
+                
+                그리고 나는... 방해물일 뿐이다.`,
+                choices: [
+                    {text: "지민이를 지키기 위해 싸운다", action: "fight_for_jimin"},
+                    {text: "그 존재의 정체를 밝혀낸다", action: "uncover_true_identity"},
+                    {text: "지민이에게 진실을 말한다", action: "tell_jimin_truth"}
+                ],
+                age: 4,
+                concern: 10
+            },
+            
+            // === 새드 엔딩 1: 지민이 사라짐 ===
+            fight_for_jimin: {
+                title: "엔딩 1 - 그들이 이겼다",
+                content: `나는 지민이를 지키기 위해 모든 것을 걸었다.
+                
+                그 구석에 소금을 뿌리고, 성경을 읽고, 온갖 방법을 동원했다.
+                
+                하지만... <span class="disturbing">아무 소용이 없었다.</span>
+                
+                그 존재는 웃으며 말했다. "너무 늦었어요. 지민이는 이미 우리 것입니다."
+                
+                어느 날 아침, 지민이의 침대가 비어있었다.
+                
+                <span class="highlight">아무런 흔적도 없이, 지민이가 사라졌다.</span>
+                
+                경찰도, 누구도 지민이를 찾을 수 없었다. 출생신고조차 없던 것처럼 모든 기록이 사라졌다.
+                
+                사람들은 내가 미쳤다고 말한다. <span class="disturbing">"처음부터 아이 같은 건 없었다"고.</span>
+                
+                하지만 나는 안다. 지민이는 있었다. 그리고... 그들이 데려갔다.
+                
+                이제 나는 혼자다. 그 구석은 여전히 차갑고, 가끔... 지민이의 웃음소리가 들린다.
+                
+                <strong>끝</strong>
+                
+                <em>어떤 사랑은 지킬 수 없다. 어떤 존재들은 우리보다 강하다.</em>`,
+                choices: [],
+                age: "사라짐",
+                concern: "절망"
+            },
+            
+            // === 새드 엔딩 2: 정체성 붕괴 ===
+            uncover_true_identity: {
+                title: "엔딩 2 - 나는 누구인가",
+                content: `그 존재의 정체를 밝히기 위해 모든 것을 조사했다.
+                
+                오래된 집 기록, 이전 거주자들, 온갖 문헌을 뒤졌다.
+                
+                그리고... 진실을 발견했다.
+                
+                <span class="disturbing">이 집에서 30년 전, 한 여성이 아이를 낳다가 죽었다.</span>
+                
+                그 여성의 이름은... 나와 같았다.
+                
+                사진을 보는 순간, 모든 것이 무너졌다. <span class="highlight">그 여성은... 나였다.</span>
+                
+                나는 30년 전에 죽었다. 지민이를 낳다가.
+                
+                <span class="disturbing">그리고 지금까지... 나는 유령이었다.</span>
+                
+                지민이도, 남편도, 모든 기억도... 내가 만들어낸 환상이었다.
+                
+                거울을 보니 반사되는 것은 텅 빈 방뿐이었다.
+                
+                나는 존재하지 않는다. 30년간 이 집에서 혼자 헤매고 있었다.
+                
+                그 구석의 '선생님'은... <span class="highlight">살아있는 내 자신이었다. 나를 깨우려 하는.</span>
+                
+                이제 모든 것을 알았다. 나는... 죽어야 한다.
+                
+                <strong>끝</strong>
+                
+                <em>가장 깊은 공포는 자신의 존재를 의심하게 될 때 찾아온다.</em>`,
+                choices: [],
+                age: "환상",
+                concern: "존재하지 않음"
+            },
+            
+            // === 새드 엔딩 3: 엄마가 대체됨 ===
+            tell_jimin_truth: {
+                title: "엔딩 3 - 새로운 엄마",
+                content: `지민이에게 모든 진실을 말했다.
+                
+                "지민아, 그 선생님은 위험해. 너를 어딘가로 데려가려고 해."
+                
+                지민이는 나를 조용히 바라보더니... 웃었다.
+                
+                <span class="disturbing">차가운 미소였다.</span>
+                
+                "엄마... 저는 이미 알고 있어요."
+                
+                "뭐라고?"
+                
+                "선생님이 말씀하셨어요. <span class="highlight">곧 새로운 엄마가 오실 거라고.</span>"
+                
+                그때 그 구석에서 형체가 나타났다. 여성의 모습이었다.
+                
+                <span class="disturbing">그런데... 그것은 나의 모습이었다.</span> 하지만 눈이 완전히 검었다.
+                
+                "고마웠어요." 그것이 내 목소리로 말했다. "지민이를 여기까지 키워줘서."
+                
+                지민이가 그것의 품에 안겼다. "새 엄마, 안녕하세요."
+                
+                나는 점점 투명해지기 시작했다. <span class="highlight">그것이 내 자리를 차지하고 있었다.</span>
+                
+                "안 돼... 지민이는 내 아이야..."
+                
+                "이제 아니에요." 그것이 웃었다. "지민이는 우리 아이에요."
+                
+                마지막에 본 것은 지민이가 그것을 '엄마'라고 부르는 모습이었다.
+                
+                나는... 사라졌다.
+                
+                <strong>끝</strong>
+                
+                <em>사랑하는 사람조차 당신을 대신할 수 있다면, 당신은 누구인가?</em>`,
+                choices: [],
+                age: "대체됨",
+                concern: "소거됨"
+            },
+            
+            // === 새드 엔딩 4: 엄마의 광기 ===
+            gradual_reduction: {
+                title: "엔딩 4 - 어머니의 선택",
+                content: `점진적으로 지민이를 그 존재로부터 떼어놓으려 했다.
+                
+                매일 조금씩 그 구석을 가리고, 지민이를 다른 방으로 옮기고, 온갖 방법을 시도했다.
+                
+                하지만... <span class="disturbing">지민이는 점점 괴로워했다.</span>
+                
+                "엄마... 아파요... 선생님이 보고 싶어요..."
+                
+                지민이의 발달도 역행하기 시작했다. 말을 못하게 되고, 걷지 못하게 되고...
+                
+                의사는 말했다. "원인을 알 수 없는 퇴행성 질환입니다."
+                
+                몇 주 후, 지민이는 거의 식물상태가 되었다.
+                
+                그때 깨달았다. <span class="highlight">그 존재 없이는 지민이가 살 수 없다는 것을.</span>
+                
+                나는 선택해야 했다.
+                
+                지민이를 그 존재에게 맡기거나... 아니면...
+                
+                <span class="disturbing">그날 밤, 나는 베개를 들었다.</span>
+                
+                "엄마가 지켜줄게, 지민아. 그들이 너를 데려가지 못하게..."
+                
+                지민이의 마지막 숨이 끊어질 때까지, 나는 울었다.
+                
+                <span class="highlight">사랑하는 아이를 내 손으로...</span>
+                
+                이제 집은 완전히 조용하다. 그 구석도 차갑기만 하다.
+                
+                나는 지민이를 지켰다. 그들로부터. 영원히.
+                
+                <strong>끝</strong>
+                
+                <em>때로는 사랑이 가장 잔인한 선택을 강요한다.</em>`,
+                choices: [],
+                age: "끝",
+                concern: "죄책감"
+            },
+            
+            wait_trust: {
+                title: "2023년 5월 1일 - 의사를 믿고 기다림",
+                content: `의사 말을 믿고 기다리기로 했다. "생후 3-4개월이 되면 괜찮아질 거라고 했으니까."
+                
+                하지만... <span class="disturbing">시간이 지날수록 더 이상해졌다.</span>
+                
+                지민이는 여전히 그 구석만 바라본다. 오히려 더 집중적으로.
+                
+                그리고 <span class="highlight">새로운 행동들이 나타나기 시작했다.</span>
+                
+                지민이가 그 구석을 보면서 손짓을 한다. 마치 누군가를 부르는 것처럼.
+                
+                어젯밤에는... <span class="disturbing">지민이가 웃으면서 박수를 쳤다.</span> 아무도 없는 그 구석을 보면서.
+                
+                "재미있어요, 선생님!" 지민이가 말했다.
+                
+                생후 3개월 아기가 말을?
+                
+                다시 소아과에 갔지만 의사는 "정상"이라고만 했다. <span class="highlight">하지만 의사도 지민이 행동을 직접 보지는 못했다.</span>
+                
+                나만 이 모든 걸 목격하고 있다.`,
+                choices: [
+                    {text: "다른 사람들에게도 보여주려 한다", action: "show_others"},
+                    {text: "지민이와 직접 대화를 시도한다", action: "talk_to_jimin"},
+                    {text: "그 구석을 자세히 조사한다", action: "investigate_corner_deep"}
+                ],
+                age: 3,
+                concern: 5
+            },
+            
+            second_opinion: {
+                title: "2023년 5월 3일 - 다른 소아과 재검진",
+                content: `다른 소아과에서 재검진을 받았다. 혹시 첫 번째 의사가 놓친 게 있을까 봐.
+                
+                두 번째 의사는 더 자세히 검사했다.
+                
+                "아기의 반응이 조금 특이하네요." 의사가 말했다.
+                
+                "어떤 면에서요?"
+                
+                "보통 이 나이 아기들은 시선이 여기저기 움직이는데, 이 아이는 <span class="highlight">한 방향에만 집중하고 있어요.</span>"
+                
+                드디어 누군가가 알아줬다!
+                
+                "혹시 가정 환경에 특별한 점이 있나요? 강한 빛이나 소리, 특이한 물건 같은..."
+                
+                "그런 건 없는데... 그냥 평범한 방 구석이에요."
+                
+                의사가 고개를 갸우뚱했다. <span class="disturbing">"평범한 구석에 이렇게 집중하는 건 좀 이상하긴 해요."</span>
+                
+                "혹시... 문제가 있는 건가요?"
+                
+                "일단 경과를 더 지켜보죠. 만약 다른 증상이 나타나면 즉시 오세요."`,
+                choices: [
+                    {text: "지민이의 다른 증상들을 기록한다", action: "document_symptoms"},
+                    {text: "발달 전문가에게 상담받는다", action: "development_specialist"},
+                    {text: "집 환경을 바꿔본다", action: "change_environment"}
+                ],
+                age: 3,
+                concern: 4
+            },
+            
+            record_sound: {
+                title: "2023년 5월 5일 - 소리 녹음",
+                content: `지민이가 그 구석을 보면서 내는 소리들을 녹음하기 시작했다.
+                
+                처음에는 그냥 평범한 옹알이 같았다. "아우아우, 바바바..."
+                
+                하지만 며칠간 녹음한 것들을 들어보니... <span class="disturbing">패턴이 있었다.</span>
+                
+                <span class="highlight">지민이가 소리를 내고, 잠시 멈추고, 다시 소리를 낸다.</span> 마치 누군가의 대답을 듣고 있는 것처럼.
+                
+                그리고 오늘... 충격적인 것을 발견했다.
+                
+                녹음 파일을 컴퓨터로 분석해보니, <span class="disturbing">지민이 목소리 외에 다른 소리가 섞여 있었다.</span>
+                
+                아주 희미하지만... 여성의 목소리 같은 것이.
+                
+                볼륨을 최대로 올려서 들어보니:
+                
+                "좋아, 지민아... 그래, 잘하고 있어..."
+                
+                <span class="highlight">누군가가 지민이에게 대답하고 있다.</span>
+                
+                하지만 그 목소리의 주인은... 보이지 않는다.`,
+                choices: [
+                    {text: "음성을 더 정밀하게 분석한다", action: "analyze_sound"},
+                    {text: "그 목소리의 정체를 추적한다", action: "trace_voice"},
+                    {text: "남편에게 녹음을 들려준다", action: "play_to_husband"}
+                ],
+                age: 3,
+                concern: 6
+            },
+            
+            talk_to_jimin: {
+                title: "2023년 5월 20일 (생후 3개월 2주)",
+                content: `오늘 밤, 지민이에게 직접 말을 걸어봤다.
+                
+                "지민아, 엄마야. 너 정말 말할 수 있구나?"
+                
+                지민이는 나를 바라봤다. 그 작은 눈에 든 표정은... <span class="disturbing">생후 3개월 아기의 것이 아니었다.</span>
+                
+                "엄마." 지민이가 말했다. "걱정하지 마세요. 저는 잘 자라고 있어요."
+                
+                그 말투, 그 표현... 마치 어른 같았다.
+                
+                "누가 너에게 말을 가르쳐주는 거니?"
+                
+                지민이는 잠시 그 구석을 바라보더니 다시 나를 봤다.
+                
+                <span class="highlight">"선생님이요. 선생님은 저를 더 빨리 자라게 도와주세요. 그래야 엄마를 더 잘 도울 수 있대요."</span>
+                
+                "엄마를 도운다고?"
+                
+                "네. 엄마는 혼자서는 저를 제대로 키울 수 없어요. 그래서 선생님이 도와주시는 거예요."
+                
+                그 순간, 소름이 온몸에 돋았다. <span class="disturbing">지민이가... 나를 가르치려 하고 있다.</span>
+                
+                <div class="photo-description">[지민이가 나를 바라보며 말하는 모습. 눈에 어른스러운 지혜가 담겨있다]</div>`,
+                choices: [
+                    {text: "지민이에게 더 많은 질문을 한다", action: "more_questions"},
+                    {text: "즉시 지민이를 데리고 도망친다", action: "run_away"},
+                    {text: "그 '선생님'을 직접 만나겠다고 한다", action: "meet_teacher"}
+                ],
+                age: 4,
+                concern: 10
+            },
+            
+            discover_learning: {
+                title: "2023년 5월 5일 - 학습의 비밀",
+                content: `지민이가 무엇을 배우는지 알아보기 위해 더 자세히 관찰했다.
+                
+                놀라운 발견을 했다. <span class="highlight">지민이는 정말로 무언가를 배우고 있었다.</span>
+                
+                그 구석을 바라볼 때마다, 지민이의 뇌파가 급격히 활성화된다. 마치 엄청난 양의 정보를 받아들이고 있는 것처럼.
+                
+                그리고 그 직후... <span class="disturbing">지민이가 새로운 능력을 보여준다.</span>
+                
+                어제는 갑자기 숫자를 세기 시작했다. "하나, 둘, 셋..." 생후 3개월 아기가!
+                
+                오늘은 더 충격적이었다. 지민이가 나에게 말했다.
+                
+                <span class="highlight">"엄마, 저는 곧 걸을 수 있을 거예요. 선생님이 가르쳐주셨어요."</span>
+                
+                그리고 정말로... 지민이가 혼자 일어서려고 시도했다.
+                
+                이건 정상적인 발달이 아니다. <span class="disturbing">누군가가 지민이에게 인간의 능력을 압축해서 주입하고 있다.</span>`,
+                choices: [
+                    {text: "그 '선생님'의 목적을 알아본다", action: "investigate_purpose"},
+                    {text: "지민이의 학습을 중단시키려 한다", action: "stop_learning"},
+                    {text: "학습 과정을 기록으로 남긴다", action: "document_process"}
+                ],
+                age: 3,
+                concern: 8
+            },
+            
+            medical_examination: {
+                title: "2023년 5월 8일 - 정밀 의학 검사",
+                content: `지민이의 비정상적인 발달을 의학적으로 정확히 진단받기로 했다.
+                
+                종합병원에서 모든 검사를 받았다. MRI, CT, 혈액검사, 유전자 검사까지.
+                
+                결과는... <span class="highlight">완벽하게 정상이었다.</span>
+                
+                "아기가 정말 건강합니다. 오히려 또래보다 모든 수치가 우수해요."
+                
+                의사도 신기해했다. "이렇게 빠른 발달을 보이는 아기는 처음 봅니다. 하지만 병적인 건 아니에요."
+                
+                하지만 한 가지 이상한 점이 있었다.
+                
+                <span class="disturbing">MRI 촬영 중에 지민이가 계속 같은 방향을 바라봤다는 것이다.</span> 병원에서도!
+                
+                "혹시 집에서도 특정 방향을 자주 보나요?"
+                
+                "네... 그런데 왜요?"
+                
+                "MRI 영상을 보니까... 뇌의 특정 부위가 비정상적으로 활성화되어 있어요. 마치 <span class="highlight">누군가와 지속적으로 소통하고 있는 것처럼요.</span>"`,
+                choices: [
+                    {text: "뇌과학 전문가에게 상담받는다", action: "neuroscience_expert"},
+                    {text: "지민이의 뇌 활동을 더 자세히 관찰한다", action: "monitor_brain_activity"},
+                    {text: "그 소통의 상대를 찾아본다", action: "find_communication_partner"}
+                ],
+                age: 3,
+                concern: 7
+            },
+            
+            communicate_corner: {
+                title: "2023년 5월 12일 - 구석과의 소통",
+                content: `더 이상 참을 수 없었다. 그 구석에 직접 말을 걸어보기로 했다.
+                
+                지민이가 잠든 밤, 나는 그 구석 앞에 섰다.
+                
+                "거기... 누구세요? 제 아이에게 뭘 하고 있는 건가요?"
+                
+                처음에는 아무 반응이 없었다.
+                
+                하지만 계속 말을 걸었다. "지민이를 그냥 놔두세요. 제발..."
+                
+                그때... <span class="disturbing">방 온도가 급격히 떨어졌다.</span> 숨이 하얗게 나올 정도로.
+                
+                그리고... <span class="highlight">목소리가 들렸다.</span>
+                
+                "당신이... 지민이 엄마군요."
+                
+                여성의 목소리였다. 부드럽지만 어딘지 서늘한.
+                
+                "저는 지민이를 돌보고 있어요. 당신보다 훨씬 잘요."
+                
+                "뭐라고요?"
+                
+                <span class="disturbing">"지민이는 특별한 아이예요. 당신 같은 평범한 어머니로는 그 잠재력을 끌어낼 수 없어요."</span>
+                
+                그 순간, 지민이가 깼다. 그리고 그 구석을 보며 웃었다.`,
+                choices: [
+                    {text: "그 존재와 협상을 시도한다", action: "negotiate_entity"},
+                    {text: "지민이를 보호하려 한다", action: "protect_jimin"},
+                    {text: "그 존재의 정체를 밝히려 한다", action: "reveal_entity_identity"}
+                ],
+                age: 3,
+                concern: 9
+            },
+            
+            observe_corner: {
+                title: "2023년 4월 21일 (생후 2개월 1일)",
+                content: `어젯밤 지민이가 또 옷장 위쪽을 바라보고 있어서 나도 그곳을 유심히 관찰해봤다.
+                
+                정말 아무것도 없었다. 그냥 하얀 벽이고, 천장과 만나는 모서리 부분일 뿐이다.
+                
+                하지만 지민이는 마치 <span class="highlight">그곳에 정말 무언가가 있는 것처럼</span> 집중해서 바라본다. 가끔은 작은 손을 들어 흔들기도 한다.
+                
+                혹시나 싶어서 휴대폰으로 그 구석을 촬영해봤다. 사진에도 아무것도 나오지 않았다.
+                
+                하지만... 이상한 점이 하나 있었다. <span class="disturbing">지민이가 그곳을 볼 때마다 방 온도가 조금 떨어지는 것 같다.</span> 기분 탓일 수도 있지만.
+                
+                <div class="photo-description">[사진: 옷장 위 구석. 특별할 것 없는 하얀 벽]</div>`,
+                choices: [
+                    {text: "온도계로 정확히 측정해본다", action: "measure_temp"},
+                    {text: "지민이 위치를 바꿔본다", action: "change_position"},
+                    {text: "그냥 아기의 특성이라고 받아들인다", action: "accept_behavior"}
+                ],
+                age: 2,
+                concern: 3
+            },
+            
+            measure_temp: {
+                title: "2023년 4월 25일 (생후 2개월 5일)",
+                content: `온도계를 사서 정확히 측정해봤다.
+                
+                놀랍게도 <span class="disturbing">정말 온도가 떨어진다.</span> 지민이가 그 구석을 바라보기 시작하면 방 온도가 2-3도 정도 내려간다. 지민이가 다른 곳을 보면 다시 정상으로 돌아온다.
+                
+                이게 어떻게 가능한 건지 모르겠다. 에어컨도 켜지 않았고, 창문도 닫혀있다.
+                
+                더 이상한 건... <span class="highlight">지민이가 그 구석을 볼 때 옹알이를 한다는 것</span>이다. 마치 누군가와 대화하는 것처럼.
+                
+                "아우아우, 바바바..." 이런 소리를 내면서 손짓까지 한다.
+                
+                남편에게 얘기했더니 그냥 아기들이 다 그런다며 너무 신경쓰지 말라고 한다. 하지만... 다른 아기들도 정말 이럴까?
+                
+                <div class="photo-description">[온도계 사진: 22°C에서 19°C로 떨어진 모습]</div>`,
+                choices: [
+                    {text: "온라인 육아 커뮤니티에 상담한다", action: "online_community"},
+                    {text: "비디오로 지민이 행동을 기록한다", action: "record_video"},
+                    {text: "집 구조를 점검해본다", action: "check_house"}
+                ],
+                age: 2,
+                concern: 4
+            },
+            
+            change_position: {
+                title: "2023년 4월 26일 - 위치 변경 실험",
+                content: `지민이 침대 위치를 바꿔봤다. 그 구석이 보이지 않는 곳으로.
+                
+                결과는... 충격적이었다.
+                
+                <span class="disturbing">지민이가 계속 울었다.</span> 평소에 거의 울지 않는 아이가 몇 시간 동안 계속 울었다.
+                
+                그리고 더 이상한 건, <span class="highlight">지민이가 고개를 억지로 돌려서 그 구석 방향을 보려고 했다는 것</span>이다. 생후 2개월 아기가 그렇게 목에 힘을 줄 수 있나?
+                
+                결국 다시 원래 위치로 돌려놨다. 그러자 지민이가 즉시 진정됐다.
+                
+                <span class="highlight">그리고 마치 안도의 한숨을 쉬는 것 같은 소리를 냈다.</span>
+                
+                이제 확신한다. 지민이에게 그 구석은 단순한 시각적 자극이 아니다.`,
+                choices: [
+                    {text: "그 구석과 지민이의 관계를 더 연구한다", action: "research_relationship"},
+                    {text: "전문가의 도움을 받는다", action: "seek_expert"},
+                    {text: "지민이가 원하는 대로 둔다", action: "let_jimin_be"}
+                ],
+                age: 2,
+                concern: 5
+            },
+            
+            accept_behavior: {
+                title: "2023년 5월 5일 - 받아들이기",
+                content: `그냥 지민이의 특별한 성격이라고 받아들이기로 했다.
+                
+                하지만... 받아들이려고 해도 점점 이상한 일들이 많아진다.
+                
+                지민이는 이제 <span class="highlight">그 구석을 보면서 옹알이를 한다.</span> 그것도 마치 대화하는 것처럼 일정한 패턴으로.
+                
+                "아우아우... 바바바..." 이런 소리를 내고, 잠시 멈추고, 다시 소리를 낸다.
+                
+                <span class="disturbing">마치 누군가의 대답을 듣고 있는 것 같다.</span>
+                
+                그리고 오늘... 정말 믿기 어려운 일이 일어났다.
+                
+                지민이가 그 구석을 보면서... <span class="highlight">"엄마"라고 말했다.</span>
+                
+                생후 3개월도 안 된 아기가 말을?`,
+                choices: [
+                    {text: "지민이에게 말을 걸어본다", action: "talk_to_jimin"},
+                    {text: "즉시 병원에 간다", action: "emergency_hospital"},
+                    {text: "비디오로 증거를 남긴다", action: "record_video"}
+                ],
+                age: 3,
+                concern: 6
+            },
+            
+            consult_doctor: {
+                title: "2023년 4월 25일 - 소아과 상담",
+                content: `소아과 선생님께 지민이 행동에 대해 상담했다.
+                
+                "아기가 계속 같은 곳만 바라보는데, 이게 정상인가요?"
+                
+                "네, 정상입니다. 신생아는 시각이 완전히 발달하지 않아서 명암 대비가 뚜렷한 곳을 자주 봅니다."
+                
+                "그런데 너무 집중적으로 봐서..."
+                
+                "걱정하지 마세요. 생후 3-4개월이 되면 시야가 넓어지고 다양한 곳을 보게 될 겁니다."
+                
+                의사의 말이 맞는 것 같다. <span class="highlight">하지만 집에 돌아와서 보니 지민이는 여전히 그 구석만 바라보고 있었다.</span>
+                
+                그리고... <span class="disturbing">오늘 처음으로 지민이가 그 구석을 보면서 소리를 냈다.</span> 옹알이가 아니라, 마치 대답하는 것 같은 소리를.`,
+                choices: [
+                    {text: "지민이의 소리를 녹음해본다", action: "record_sounds"},
+                    {text: "다른 소아과에서 재검진받는다", action: "second_opinion"},
+                    {text: "의사 말을 믿고 기다린다", action: "wait_trust"}
+                ],
+                age: 2,
+                concern: 3
+            },
+            
+            dismiss_normal: {
+                title: "2023년 5월 1일 (생후 2개월 2주)",
+                content: `그냥 정상적인 발달 과정이라고 생각하기로 했다.
+                
+                하지만... 시간이 지날수록 더 이상해진다.
+                
+                지민이는 이제 <span class="highlight">그 구석을 보면서 미소짓기 시작했다.</span> 그것도 정말 행복해 보이는 미소를.
+                
+                그리고 가끔... <span class="disturbing">그 구석에서 작은 소리가 들리는 것 같다.</span> 바람 소리 같기도 하고, 속삭임 같기도 하고.
+                
+                남편에게 말해도 "에어컨 소리"라거나 "집 밖 소음"이라고만 한다.
+                
+                하지만 나는 안다. 그 소리는 다르다. <span class="highlight">마치 누군가가 지민이에게 말을 걸고 있는 것 같다.</span>
+                
+                정말 내가 너무 예민한 걸까?`,
+                choices: [
+                    {text: "소리의 정체를 알아본다", action: "investigate_sound"},
+                    {text: "다른 엄마들에게 조언을 구한다", action: "ask_other_moms"},
+                    {text: "계속 무시하려고 노력한다", action: "keep_ignoring"}
+                ],
+                age: 3,
+                concern: 4
+            },
+            
+            next_day: {
+                title: "2023년 3월 16일 (생후 1개월 1일)",
+                content: `어제 밤부터 지민이를 더 주의깊게 관찰하기 시작했다.
+                
+                새벽 3시경, 지민이가 깼는데 울지 않았다. 그냥 조용히 그 구석을 바라보고 있었다. <span class="highlight">마치 누군가와 눈을 맞추고 있는 것처럼.</span>
+                
+                아침에 남편에게 말했더니 "신생아들은 다 그래"라고 했다. 하지만... 정말 다 그럴까?
+                
+                오늘 하루 종일 관찰한 결과, 지민이는 깨어있는 시간의 80% 이상을 그 구석을 바라보며 보낸다. 
+                
+                그리고 이상한 건... <span class="disturbing">지민이가 그 구석을 볼 때만 완전히 조용하다는 것</span>이다. 다른 곳을 보면 약간 칭얼거리기도 하는데.`,
+                choices: [
+                    {text: "그 구석에 뭔가 설치해본다", action: "install_something"},
+                    {text: "지민이 위치를 바꿔본다", action: "change_position"},
+                    {text: "계속 관찰한다", action: "keep_observing"}
+                ],
+                age: 1,
+                concern: 2
+            },
+            
+            examine_corner: {
+                title: "2023년 3월 15일 저녁 - 구석 조사",
+                content: `지민이가 잠든 후, 그 구석을 자세히 살펴봤다.
+                
+                정말 아무것도 없다. 그냥 평범한 벽과 천장이 만나는 모서리일 뿐이다.
+                
+                하지만... <span class="highlight">만져보니 그 부분만 다른 곳보다 차갑다.</span> 온도계로 재보니 정말로 2-3도 정도 낮다.
+                
+                혹시 단열재에 문제가 있나 싶어서 벽지를 살짝 뜯어봤는데, 아무 이상 없었다.
+                
+                그런데 벽지를 뜯고 있는데... <span class="disturbing">지민이가 갑자기 울기 시작했다.</span> 평소에 거의 울지 않는 아이가 갑자기 큰 소리로.
+                
+                벽지를 다시 붙이니까 지민이가 진정됐다.`,
+                choices: [
+                    {text: "온도 변화를 더 정확히 측정한다", action: "measure_temp"},
+                    {text: "전문가에게 집 구조를 점검받는다", action: "home_inspection"},
+                    {text: "더 이상 건드리지 않는다", action: "leave_alone"}
+                ],
+                age: 1,
+                concern: 3
+            },
+            
+            talk_husband: {
+                title: "2023년 3월 15일 밤 - 남편과의 대화",
+                content: `저녁에 남편에게 지민이 이야기를 했다.
+                
+                "지민이가 계속 같은 곳만 바라보는 것 같아."
+                
+                "아기들은 다 그래. 시야가 아직 완전하지 않아서 대비가 확실한 곳을 본다고 했잖아."
+                
+                "그런데 너무 집중적으로 봐서..."
+                
+                "신경쓰지 마. 정상이야."
+                
+                남편은 별로 관심이 없어 보였다. <span class="highlight">하지만 이상한 건, 남편은 지민이가 그 구석을 바라보는 걸 한 번도 본 적이 없다는 것</span>이다.
+                
+                남편이 있을 때는 지민이가 평범하게 행동한다. <span class="disturbing">마치 내가 혼자 있을 때만 그 행동을 하는 것 같다.</span>`,
+                choices: [
+                    {text: "남편이 있을 때 지민이를 더 관찰한다", action: "observe_with_husband"},
+                    {text: "혼자 있을 때와 차이점을 기록한다", action: "record_differences"},
+                    {text: "남편을 더 설득해본다", action: "convince_husband"}
+                ],
+                age: 1,
+                concern: 2
+            }
+        };
+        
+        // 스토리 이동 함수
+        function goToStory(storyKey) {
+            console.log('이동할 스토리:', storyKey);
+            
+            if (!stories[storyKey]) {
+                alert('준비중인 스토리입니다: ' + storyKey);
+                return;
+            }
+            
+            const story = stories[storyKey];
+            const container = document.getElementById('story-content');
+            
+            // 글리치 효과
+            container.classList.add('glitch');
+            setTimeout(() => container.classList.remove('glitch'), 800);
+            
+            // 상태 업데이트
+            age = story.age;
+            concernLevel = story.concern;
+            
+            // 다크모드 적용
+            if (concernLevel >= 3) {
+                document.body.classList.add('dark-mode');
+            }
+            
+            // 콘텐츠 업데이트
+            setTimeout(() => {
+                let choicesHtml = '';
+                if (story.choices && story.choices.length > 0) {
+                    choicesHtml = '<div class="choices">';
+                    for (let choice of story.choices) {
+                        choicesHtml += `<button class="choice" onclick="goToStory('${choice.action}')">${choice.text}</button>`;
+                    }
+                    choicesHtml += '</div>';
+                }
+                
+                container.innerHTML = `
+                    <div class="date-header">${story.title}</div>
+                    <div class="diary-entry">${story.content}</div>
+                    ${choicesHtml}
+                `;
+                
+                updateStatus();
+            }, 800);
+        }
+        
+        // 상태 업데이트 함수
+        function updateStatus() {
+            const concernLevels = ['없음', '약간', '보통', '높음', '심각', '매우 심각', '극심', '위험', '비정상', '한계'];
+            const concernClasses = ['normal', 'normal', 'slight', 'moderate', 'high', 'high', 'extreme', 'extreme', 'extreme', 'extreme'];
+            
+            document.getElementById('age-display').textContent = `생후 ${age}개월`;
+            document.getElementById('development').textContent = concernLevel >= 3 ? '비정상적으로 빠름' : '정상';
+            document.getElementById('concern').textContent = concernLevels[concernLevel] || '알 수 없음';
+            document.getElementById('concern').className = `concern-level ${concernClasses[concernLevel] || 'normal'}`;
+            
+            // 특이사항 업데이트
+            let specialNote = '평균보다 큰 체격';
+            if (concernLevel >= 2) specialNote = '특정 장소를 자주 바라봄';
+            if (concernLevel >= 4) specialNote = '온도 변화, 이상한 행동';
+            if (concernLevel >= 6) specialNote = '비정상적 발달 속도';
+            
+            document.getElementById('special').textContent = specialNote;
+        }
+        
+        // 초기 상태 설정
+        updateStatus();
+    </script>
+</body>
+</html>
